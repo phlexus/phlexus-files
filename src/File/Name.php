@@ -10,6 +10,8 @@ use Phlexus\Files\Formatter\OriginalFormatter;
 class Name
 {
     /**
+     * File name
+     *
      * @var string
      */
     protected $name;
