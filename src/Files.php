@@ -17,7 +17,7 @@ class Files
     /**
      * Files constructor
      *
-     * @param FilesystemAdapter $adapter
+     * @param FilesystemAdapter $fileSystemAdapter
      */
     public function __construct(FilesystemAdapter $fileSystemAdapter)
     {
@@ -51,11 +51,49 @@ class Files
 
     /**
      * @param string $filenamePath
+     * @param string $contents
+     * @param FormatterInterface $formatter
+     * @throws FilesystemException
+     */
+    public function uploadFormatted(string $filenamePath, string $contents, FormatterInterface $formatter): void
+    {
+        $this->upload($this->makeFormattedPath($filenamePath, $formatter), $contents);
+    }
+
+    /**
+     * @param string $filenamePath
      * @param $resource
      * @throws FilesystemException
      */
     public function uploadStream(string $filenamePath, $resource): void
     {
         $this->fileSystemAdapter->writeStream($filenamePath, $resource, new Config());
+    }
+
+    /**
+     * @param string $filenamePath
+     * @param $resource
+     * @param FormatterInterface $formatter
+     * @throws FilesystemException
+     */
+    public function uploadStreamFormatted(string $filenamePath, $resource, FormatterInterface $formatter): void
+    {
+        $this->uploadStream($this->makeFormattedPath($filenamePath, $formatter), $resource);
+    }
+
+    /**
+     * @param string $filenamePath
+     * @param FormatterInterface $formatter
+     * @return string
+     */
+    private function makeFormattedPath(string $filenamePath, FormatterInterface $formatter): string
+    {
+        $pathParts = explode(DIRECTORY_SEPARATOR, $filenamePath);
+        $pathOnly = array_pop($pathParts);
+
+        $filename = end($pathParts);
+        $filename = $this->setFormattedName($filename, $formatter);
+
+        return $pathOnly . DIRECTORY_SEPARATOR . $filename;
     }
 }
