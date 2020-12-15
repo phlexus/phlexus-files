@@ -41,6 +41,25 @@ class Files
 
     /**
      * @param string $filenamePath
+     * @return bool
+     * @throws FilesystemException
+     */
+    public function exist(string $filenamePath): bool
+    {
+        return $this->fileSystemAdapter->fileExists($filenamePath);
+    }
+
+    /**
+     * @param string $filenamePath
+     * @throws FilesystemException
+     */
+    public function delete(string $filenamePath)
+    {
+        $this->fileSystemAdapter->delete($filenamePath);
+    }
+
+    /**
+     * @param string $filenamePath
      * @param string $contents
      * @throws FilesystemException
      */
