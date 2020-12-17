@@ -71,10 +71,10 @@ class Files
     /**
      * @param string $filenamePath
      * @param string $contents
-     * @param FormatterInterface $formatter
+     * @param FormatterInterface|null $formatter
      * @throws FilesystemException
      */
-    public function uploadFormatted(string $filenamePath, string $contents, FormatterInterface $formatter): void
+    public function uploadFormatted(string $filenamePath, string $contents, ?FormatterInterface $formatter = null): void
     {
         $this->upload($this->makeFormattedPath($filenamePath, $formatter), $contents);
     }
@@ -92,20 +92,20 @@ class Files
     /**
      * @param string $filenamePath
      * @param $resource
-     * @param FormatterInterface $formatter
+     * @param FormatterInterface|null $formatter
      * @throws FilesystemException
      */
-    public function uploadStreamFormatted(string $filenamePath, $resource, FormatterInterface $formatter): void
+    public function uploadStreamFormatted(string $filenamePath, $resource, ?FormatterInterface $formatter = null): void
     {
         $this->uploadStream($this->makeFormattedPath($filenamePath, $formatter), $resource);
     }
 
     /**
      * @param string $filenamePath
-     * @param FormatterInterface $formatter
+     * @param FormatterInterface|null $formatter
      * @return string
      */
-    private function makeFormattedPath(string $filenamePath, FormatterInterface $formatter): string
+    private function makeFormattedPath(string $filenamePath, ?FormatterInterface $formatter = null): string
     {
         $pathParts = explode(DIRECTORY_SEPARATOR, $filenamePath);
         $pathOnly = array_pop($pathParts);
