@@ -36,7 +36,7 @@ class Files
             $name->setFormatter($formatter);
         }
 
-        return $name->getFormattedName();
+        return $name->format();
     }
 
     /**
