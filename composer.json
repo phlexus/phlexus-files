@@ -15,11 +15,18 @@
         "league/flysystem-aws-s3-v3": "^2.0"
     },
     "require-dev": {
-        "phalcon/ide-stubs": "^4.0"
+        "phalcon/ide-stubs": "^4.0",
+        "codeception/codeception": "^4.1",
+        "codeception/module-asserts": "^1.0.0"
     },
     "autoload": {
         "psr-4": {
             "Phlexus\\Files\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phlexus\\Files\\Tests\\Unit\\": "tests/unit/"
         }
     },
     "archive": {
