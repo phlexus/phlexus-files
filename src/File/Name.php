@@ -54,23 +54,30 @@ class Name
     /**
      * @return string
      */
-    public function format()
+    public function format(): string
     {
-        return $this->getFormatter()->format($this->name);
-    }
-
-    /**
-     * @return string
-     */
-    public function getFormattedName(): string
-    {
-        $formatted = $this->format();
+        $filename = $this->getFilenameOnly();
         $extension = $this->getFilenameExtension();
+
+        $formatted = $this->getFormatter()->format($filename);
+
         if ($extension === null) {
             return $formatted;
         }
 
         return implode('.', [$formatted, $extension]);
+    }
+
+    /**
+     * Get file name without extension
+     *
+     * @return string
+     */
+    public function getFilenameOnly(): string
+    {
+        $parts = explode('.', $this->name);
+
+        return current($parts);
     }
 
     /**
