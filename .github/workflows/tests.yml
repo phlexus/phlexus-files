@@ -7,7 +7,7 @@ jobs:
     name: PHP ${{ matrix.php-versions }}
     runs-on: ubuntu-latest
     env:
-      extensions: mbstring, intl, json
+      extensions: mbstring, intl, phalcon4, json
       key: cache-v0.0.2
     strategy:
       fail-fast: false
