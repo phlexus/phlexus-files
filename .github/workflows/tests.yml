@@ -55,3 +55,10 @@ jobs:
       - name: Run test suites
         if: success()
         run: vendor/bin/codecept run
+
+      - name: Upload coverage to Codecov
+        if: success()
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: ./coverage.xml
