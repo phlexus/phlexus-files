@@ -1,6 +1,6 @@
 name: "Tests"
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   run-tests:
@@ -54,11 +54,11 @@ jobs:
 
       - name: Run test suites
         if: success()
-        run: vendor/bin/codecept run
+        run: vendor/bin/codecept run --coverage-xml=coverage-${{ matrix.php-versions }}.xml
 
       - name: Upload coverage to Codecov
         if: success()
         uses: codecov/codecov-action@v1
         with:
           token: ${{secrets.CODECOV_TOKEN}}
-          file: ./coverage.xml
+          file: ./tests/_output/coverage-*.xml
