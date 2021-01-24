@@ -26,6 +26,15 @@ class Files
 
     /**
      * @param string $filename
+     * @return Name
+     */
+    public function getName(string $filename): Name
+    {
+        return new Name($filename);
+    }
+
+    /**
+     * @param string $filename
      * @param FormatterInterface|null $formatter
      * @return string
      */

@@ -6,11 +6,20 @@ namespace Phlexus\Files\Tests\Unit;
 
 use Codeception\Test\Unit;
 use League\Flysystem\Local\LocalFilesystemAdapter;
+use Phlexus\Files\File\Name;
 use Phlexus\Files\Files;
 use Phlexus\Files\Formatter\Md5Formatter;
 
 final class FilesTest extends Unit
 {
+    public function testGetName(): void
+    {
+        $files = new Files(new LocalFilesystemAdapter(codecept_output_dir()));
+        $name = $files->getName('filename.jpg');
+
+        $this->assertInstanceOf(Name::class, $name);
+    }
+
     public function testSetFormattedNameMd5(): void
     {
         $files = new Files(new LocalFilesystemAdapter(codecept_output_dir()));
