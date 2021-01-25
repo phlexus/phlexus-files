@@ -81,6 +81,18 @@ class Name
     }
 
     /**
+     * Get formatted file name without extension
+     *
+     * @return string
+     */
+    public function getFormattedFilenameOnly(): string
+    {
+        $filename = $this->getFilenameOnly();
+
+        return $this->getFormatter()->format($filename);
+    }
+
+    /**
      * Returns extension name based on filename
      *
      * In case filename has no extension, `null` will be returned.

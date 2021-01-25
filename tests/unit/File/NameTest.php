@@ -42,4 +42,12 @@ final class NameTest extends Unit
 
         $this->assertSame((string)time() . '.jpg', $name->format());
     }
+
+    public function testGetFormattedFilenameOnly(): void
+    {
+        $name = new Name('filename.jpg');
+        $name->setFormatter(new Md5Formatter());
+
+        $this->assertSame('435ed7e9f07f740abf511a62c00eef6e', $name->getFormattedFilenameOnly());
+    }
 }
