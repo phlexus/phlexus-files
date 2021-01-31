@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  php:
+    container_name: phlexus-files
+    hostname: phlexus-files
+    build: docker
+    working_dir: /srv
+    volumes:
+      - .:/srv
