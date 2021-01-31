@@ -70,11 +70,13 @@ class Files
     /**
      * @param string $filenamePath
      * @param string $contents
+     * @param Config|null $config
      * @throws FilesystemException
      */
-    public function upload(string $filenamePath, string $contents): void
+    public function upload(string $filenamePath, string $contents, ?Config $config = null): void
     {
-        $this->fileSystemAdapter->write($filenamePath, $contents, new Config());
+        $config = $config ?: new Config();
+        $this->fileSystemAdapter->write($filenamePath, $contents, $config);
     }
 
     /**
@@ -91,11 +93,13 @@ class Files
     /**
      * @param string $filenamePath
      * @param $resource
+     * @param Config|null $config
      * @throws FilesystemException
      */
-    public function uploadStream(string $filenamePath, $resource): void
+    public function uploadStream(string $filenamePath, $resource, ?Config $config = null): void
     {
-        $this->fileSystemAdapter->writeStream($filenamePath, $resource, new Config());
+        $config = $config ?: new Config();
+        $this->fileSystemAdapter->writeStream($filenamePath, $resource, $config);
     }
 
     /**
