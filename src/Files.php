@@ -25,6 +25,14 @@ class Files
     }
 
     /**
+     * @return FilesystemAdapter
+     */
+    public function getFileSystemAdapter(): FilesystemAdapter
+    {
+        return $this->fileSystemAdapter;
+    }
+
+    /**
      * @param string $filename
      * @return Name
      */
