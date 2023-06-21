@@ -31,7 +31,10 @@
     },
     "archive": {
         "exclude": [
-            ".gitignore"
+            ".docker",
+            ".github",
+            ".gitignore",
+            "tests"
         ]
     }
 }
