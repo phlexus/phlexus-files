@@ -11,8 +11,7 @@
     "require": {
         "php": ">=7.2",
         "ext-phalcon": "^4.0",
-        "league/flysystem": "^2.0",
-        "league/flysystem-aws-s3-v3": "^2.0"
+        "league/flysystem": "^2.0"
     },
     "require-dev": {
         "phalcon/ide-stubs": "^4.0",
